@@ -139,15 +139,15 @@ open class EnrollActivity : FaceBaseActivity() {
                 }
             }
 
-            override fun onEnrollmentHelp(helpMessageId: Int, charSequence: CharSequence) {
+            override fun onEnrollmentHelp(helpMessageId: Int, charSequence: CharSequence?) {
                 runOnUiThread {
-                    if (!TextUtils.isEmpty(charSequence)) {
-                        mEnrollVendorMessage!!.text = charSequence
+                    if (!charSequence.isNullOrEmpty()) {
+                        mEnrollVendorMessage?.text = charSequence
                     }
                 }
             }
 
-            override fun onEnrollmentError(errorMessageId: Int, charSequence: CharSequence) {
+            override fun onEnrollmentError(errorMessageId: Int, charSequence: CharSequence?) {
                 if (!mIsActivityPaused) {
                     val intent = Intent()
                     intent.setClass(this@EnrollActivity, TryAgainActivity::class.java)
